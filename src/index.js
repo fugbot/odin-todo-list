@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import './style.css';
+import addTaskToList from './createTask.js'
 import { sub } from 'date-fns';
 import Calendar from './images/calendar-range-outline.svg';
  
@@ -27,30 +28,28 @@ input.addEventListener("keydown", function (e) {
     }
 });
 
-function addTaskToList(){
-    const text = input.value.trim();
-    addTask(text);
-    emptyInput();
-}
+// function addTaskToList(){
+//     const text = input.value.trim();
+//     addTask(text);
+//     emptyInput();
+// }
 
-function emptyInput(){
-    input.value = "";
-    date.value= "";
-}
+// function emptyInput(){
+//     input.value = "";
+//     date.value= "";
+// }
 
-function addTask(taskTitle) {
-    const taskItem = document.createElement("li");
-    const dueDate = addDueDate();
-    taskItem.textContent = taskTitle + " " + dueDate;
-    defaultList.appendChild(taskItem);
+// function addTask(taskTitle) {
+//     const taskItem = document.createElement("li");
+//     const dueDate = addDueDate();
+//     taskItem.textContent = taskTitle + " " + dueDate;
+//     defaultList.appendChild(taskItem); 
+// }
+// addTask("stuff");
+// addTask("stuff2");
+// addTask("stuff3");
 
-    
-}
-addTask("stuff");
-addTask("stuff2");
-addTask("stuff3");
-
-function addDueDate(){
-    const dueDate = date.value;
-    return dueDate;
-}
+// function addDueDate(){
+//     const dueDate = date.value;
+//     return dueDate;
+// }
