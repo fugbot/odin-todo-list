@@ -2,6 +2,7 @@
     border:1px solid blue;
 }
 
+/* task input */
 button {
     background-color: white;
     color: black;
@@ -22,4 +23,10 @@ input[type=text], select {
     margin: 8px 0;
     display: inline-block;
     border: none;
+}
+
+/* list items */
+li {
+    display: flex;
+    gap: 10px;
 }
