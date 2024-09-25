@@ -3,20 +3,37 @@ const date = document.querySelector("#due-date");
 
 const defaultList = document.querySelector(".default");
 
-
-function addTask(taskTitle) {
-    const taskItem = document.createElement("li");
+export default function addTaskToList(title) {
+    const task = document.createElement("li");
+    const fragment = document.createDocumentFragment();
     
-    //todo: fix checkbox
     const checkbox = addCheckbox();
-    taskItem.appendChild(checkbox);
+    const taskText = addTaskName(title);
     const dueDate = addDueDate();
-    taskItem.textContent = taskTitle + " " + dueDate;
-    defaultList.appendChild(taskItem); 
+    
+    fragment.appendChild(checkbox);
+    fragment.appendChild(taskText);
+    fragment.appendChild(dueDate);
+    
+    task.appendChild(fragment);
+
+    defaultList.appendChild(task); 
+    emptyInput(); 
+}
+
+function addTaskName(text){
+    const taskName = document.createElement("p");
+    if(text === undefined){
+        taskName.textContent = input.value.trim();
+    } else{
+        taskName.textContent = text;
+    }
+    return taskName;
 }
 
 function addDueDate(){
-    const dueDate = date.value;
+    const dueDate = document.createElement("p");
+    dueDate.textContent = date.value;
     return dueDate;
 }
 
@@ -34,13 +51,16 @@ function addCheckbox(){
     return checkbox;
 }
 
-//placeholder tasks
-addTask("get groceries");
-addTask("walk the dog")
-
-export default function addTaskToList(){
-    const text = input.value.trim();
-    addTask(text);
-    addCheckbox();
-    emptyInput();
+function addDefaultTasks(name){
+    addTaskToList(name);
 }
+
+addDefaultTasks("get groceries");
+addDefaultTasks("walk the dog");
+
+// export default function addTaskToList(){
+//     const text = input.value.trim();
+//     addTask(text);
+//     //addCheckbox();
+//     emptyInput();
+// }
