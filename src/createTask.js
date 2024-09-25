@@ -1,4 +1,4 @@
-const input = document.getElementById("todo-input");
+const input = document.getElementById("task-name");
 const date = document.querySelector("#due-date");
 
 const defaultList = document.querySelector(".default");
