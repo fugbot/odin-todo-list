@@ -15,8 +15,14 @@ const date = document.querySelector("#due-date");
     const taskItem = document.createElement("li");
     const fragment = document.createDocumentFragment();
     
-    //const checkbox = addCheckbox();
-    //fragment.appendChild(checkbox);
+    //todo: toggle finished/not finished task
+    const toggleBtn = document.createElement("button");
+    toggleBtn.textContent = "Toggle Complete";
+    toggleBtn.className = "toggle-complete"
+    fragment.appendChild(toggleBtn);
+
+    // const checkbox = addCheckbox();
+    // fragment.appendChild(checkbox);
     
     //const taskText = addTaskName(title);
     // const titleSpan = document.createElement("span");
@@ -24,10 +30,8 @@ const date = document.querySelector("#due-date");
     const titleSpan = addTaskName(task);
     fragment.appendChild(titleSpan);
 
-    //todo: fix date!
+
     const dateSpan = addDueDate(task);
-    // const dateSpan = document.createAttribute("span");
-    // dateSpan.textContent = task.dueDate;
     fragment.appendChild(dateSpan);
 
     // const descriptionSpan = document.createElement("span");
@@ -39,10 +43,7 @@ const date = document.querySelector("#due-date");
     // prioSpan.textContent = task.priority;
     // fragment.appendChild(prioSpan);
     
-    // const toggleBtn = document.createElement("button");
-    // toggleBtn.textContent = "Toggle Complete";
-    // toggleBtn.className = "toggle-complete"
-    // fragment.appendChild(toggleBtn);
+    
     
     
     taskItem.appendChild(fragment);
@@ -76,7 +77,7 @@ function addTaskName(task){
 
 function addDueDate(task){
     const dueDate = document.createElement("span");
-    dueDate.textContent = task.date;
+    dueDate.textContent = task.dueDate;
     return dueDate;
 }
 
