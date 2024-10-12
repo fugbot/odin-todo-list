@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import './style.css';
 import addTaskToList from './createTask.js'
+//import addTaskToList from './taskHandler.js'
 import { sub } from 'date-fns';
 import Calendar from './images/calendar-range-outline.svg';
  
@@ -10,7 +11,7 @@ const defaultList = document.querySelector(".default");
 
 const taskItems = [];
 
-const input = document.getElementById("todo-input");
+const input = document.querySelector(".taskInput");
 const date = document.querySelector("#due-date");
 const submitBtn = document.querySelector("#submit");
 
