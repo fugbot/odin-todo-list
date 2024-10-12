@@ -30,3 +30,8 @@ li {
     display: flex;
     gap: 10px;
 }
+
+input[type=checkbox]:checked ~ span {
+    color: grey;
+    text-decoration: line-through;
+}

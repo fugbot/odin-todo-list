@@ -1,5 +1,7 @@
 import {Task} from './TaskComponent.js'
 
+export {addTaskFromInput} 
+
 // const input = document.getElementById("task-name");
 // const date = document.querySelector("#due-date");
 
@@ -16,13 +18,13 @@ const date = document.querySelector("#due-date");
     const fragment = document.createDocumentFragment();
     
     //todo: toggle finished/not finished task
-    const toggleBtn = document.createElement("button");
-    toggleBtn.textContent = "Toggle Complete";
-    toggleBtn.className = "toggle-complete"
-    fragment.appendChild(toggleBtn);
+    // const toggleBtn = document.createElement("button");
+    // toggleBtn.textContent = "Toggle Complete";
+    // toggleBtn.className = "toggle-complete"
+    // fragment.appendChild(toggleBtn);
 
-    // const checkbox = addCheckbox();
-    // fragment.appendChild(checkbox);
+    const checkbox = addCheckbox(task);
+    fragment.appendChild(checkbox);
     
     //const taskText = addTaskName(title);
     // const titleSpan = document.createElement("span");
@@ -53,7 +55,7 @@ const date = document.querySelector("#due-date");
     emptyInput(); 
 }
 
-export default function addTaskFromInput() {
+function addTaskFromInput() {
     const titleInput = document.querySelector("#task-name");
     const dateInput = document.querySelector("#due-date");
 
@@ -86,73 +88,12 @@ function emptyInput(){
     date.value= "";
 }
 
-function addCheckbox(){
+function addCheckbox(task){
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    // checkbox.name = "name";
-    // checkbox.value = "value";
-    //checkbox.id = "id";
+    checkbox.name = `task`;
+    checkbox.value = `task`;;
+    //checkbox.id = `checkbox ${task.title.trim()}`;
     return checkbox;
 }
 
-// export default function addTaskToList(title) {
-//     const task = document.createElement("li");
-//     const fragment = document.createDocumentFragment();
-    
-//     const checkbox = addCheckbox();
-//     const taskText = addTaskName(title);
-//     const dueDate = addDueDate();
-    
-//     fragment.appendChild(checkbox);
-//     fragment.appendChild(taskText);
-//     fragment.appendChild(dueDate);
-    
-//     task.appendChild(fragment);
-
-//     defaultList.appendChild(task); 
-//     emptyInput(); 
-// }
-
-// function addTaskName(text){
-//     const taskName = document.createElement("p");
-//     if(text === undefined){
-//         taskName.textContent = input.value.trim();
-//     } else{
-//         taskName.textContent = text;
-//     }
-//     return taskName;
-// }
-
-// function addDueDate(){
-//     const dueDate = document.createElement("p");
-//     dueDate.textContent = date.value;
-//     return dueDate;
-// }
-
-// function emptyInput(){
-//     input.value = "";
-//     date.value= "";
-// }
-
-// function addCheckbox(){
-//     const checkbox = document.createElement("input");
-//     checkbox.type = "checkbox";
-//     // checkbox.name = "name";
-//     // checkbox.value = "value";
-//     //checkbox.id = "id";
-//     return checkbox;
-// }
-
-// function addDefaultTasks(name){
-//     addTaskToList(name);
-// }
-
-// addDefaultTasks("get groceries");
-// addDefaultTasks("walk the dog");
-
-// // export default function addTaskToList(){
-// //     const text = input.value.trim();
-// //     addTask(text);
-// //     //addCheckbox();
-// //     emptyInput();
-// // }
