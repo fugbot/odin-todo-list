@@ -40,12 +40,25 @@ const date = document.querySelector("#due-date");
     // descriptionSpan.textContent = task.description;
     // fragment.appendChild(descriptionSpan);
 
+    
+    const prioSelect = document.createElement("select");
+    prioSelect.className = "priority";
+    const prioLowOption = document.createElement("option");
+    prioLowOption.value = "low";
+    prioLowOption.textContent = "Low";
+    prioSelect.appendChild(prioLowOption);
 
-    // const prioSpan = document.createElement("span");
-    // prioSpan.textContent = task.priority;
-    // fragment.appendChild(prioSpan);
-    
-    
+    const prioMedOption = document.createElement("option");
+    prioMedOption.value = "med";
+    prioMedOption.textContent = "Medium";
+    prioSelect.appendChild(prioMedOption);
+
+    const prioHighOption = document.createElement("option");
+    prioHighOption.value = "high";
+    prioHighOption.textContent = "High";
+    prioSelect.appendChild(prioHighOption);
+
+    fragment.appendChild(prioSelect);
     
     
     taskItem.appendChild(fragment);
@@ -95,5 +108,11 @@ function addCheckbox(task){
     checkbox.value = `task`;;
     //checkbox.id = `checkbox ${task.title.trim()}`;
     return checkbox;
+}
+
+
+
+function saveChanges(task){
+
 }
 

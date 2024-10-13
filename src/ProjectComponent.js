@@ -6,6 +6,7 @@ class Project {
 
     addTask(task){
         this.tasks.push(task);
+        //todo: check if task already exists
     }
     
     removeTask(taskTitle){
