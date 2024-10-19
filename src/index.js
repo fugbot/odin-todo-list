@@ -1,11 +1,11 @@
-import _, { forEach } from 'lodash';
-import './style.css';
-import {addTaskFromInput} from './createTask.js'
-import {Task} from './TaskComponent.js'
+import _, { forEach } from "lodash";
+import "./style.css";
+import { addTaskFromForm, addTaskFromForm2 } from "./createTask.js";
+import { Task } from "./TaskComponent.js";
 //import addTaskToList from './taskHandler.js'
-import { sub } from 'date-fns';
-import Calendar from './images/calendar-range-outline.svg';
- 
+import { sub } from "date-fns";
+import Calendar from "./images/calendar-range-outline.svg";
+
 const tasklist = document.querySelector(".tasklists");
 const taskInputDiv = document.querySelector(".taskInput");
 const defaultList = document.querySelector(".default");
@@ -22,26 +22,28 @@ const checkboxes = document.querySelectorAll("input[type=checkbox]");
 // taskInputDiv.appendChild(calendarSvg);
 
 submitBtn.addEventListener("click", () => {
-    addTaskFromInput();
-})
+  //addTaskFromForm();
+  addTaskFromForm2();
+});
 
 input.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
-        addTaskFromInput();
-    }
+  if (e.code === "Enter") {
+    //checks whether the pressed key is "Enter"
+    //addTaskFromForm();
+    addTaskFromForm2();
+  }
 });
 
 date.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
-        addTaskFromInput();
-    }
+  if (e.code === "Enter") {
+    //checks whether the pressed key is "Enter"
+    //addTaskFromForm();
+  }
 });
 
-
-tasklist.addEventListener('change', function (e) {
-    // But only alert for elements that have an alert-button class
-    if (e.target.querySelectorAll("input[type=checkbox]")){
-        console.log("completed task");
-    }
-})
-
+tasklist.addEventListener("change", function (e) {
+  // But only alert for elements that have an alert-button class
+  if (e.target.querySelectorAll("input[type=checkbox]")) {
+    console.log("completed task");
+  }
+});
