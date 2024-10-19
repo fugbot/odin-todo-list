@@ -1,32 +1,63 @@
-<html></html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Do Things List</title>
-    <script src="https://unpkg.com/lodash@4.17.20"></script>
-  </head>
-  <body>
-    <h1>Do Things List</h1>
-    <div class="sidebar">
+<html>
 
-    </div>
-    
-    <div class="taskInput">
-        <input type="text" id="task-name" name="task" placeholder="What do I need to do?">
-        <input type="date" id="due-date" name="due-date">
-        <button type="submit" id="submit" name="submit">Enter</button>
-    </div>
+</html>
 
-    <div class="tasklists">
-      <ul class="default">
-        <li><input type="checkbox" name="task" value="task"><span>Get Groceries</span><span></span></li>
-        <li><input type="checkbox" name="task" value="task"><span>Walk Dog</span><span></span></li>
-      </ul>
-    </div>
-    
-    <div class="description-view">
+<head>
+  <meta charset="utf-8" />
+  <title>Do Things List</title>
+  <script src="https://unpkg.com/lodash@4.17.20"></script>
+</head>
 
-    </div>
+<body>
+  <h1>Do Things List</h1>
+  <div class="sidebar">
 
-    <script src="./src/index.js"></script>
-  </body>
+  </div>
+
+  <div class="taskInput">
+    <input type="text" id="task-name" name="task" placeholder="What do I need to do?">
+    <input type="date" id="due-date" name="due-date">
+    <button type="submit" id="submit" name="submit">Enter</button>
+  </div>
+
+  <div class="tasklists">
+    <ul class="default">
+      <li>
+        <div class="task-item">
+          <input type="checkbox" name="task" value="task">
+          <span class="title">Get Groceries</span>
+          <span class="description">Apples, Bananas, Noodles</span>
+          <span class="date">2024-10-21</span>
+          <select class="priority">
+            <option value="low">Low</option>
+            <option value="med">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <button class="edit">Edit</button>
+        </div>
+      </li>
+
+      <li>
+        <div>
+          <input type="checkbox" name="task" value="task">
+          <span class="title">Walk Dog</span>
+          <span class="date"></span>
+          <select class="priority">
+            <option value="low">Low</option>
+            <option value="med">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <div class="description-view">
+
+  </div>
+
+  <script src="./src/index.js"></script>
+</body>
+
 </html>
