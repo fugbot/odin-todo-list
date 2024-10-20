@@ -1,4 +1,4 @@
-const Task = () => {
+const taskFactory = () => {
   let taskCounter = 0;
 
   return function createTask(
@@ -34,6 +34,8 @@ const Task = () => {
     };
   };
 };
+
+const Task = taskFactory();
 
 // function Task() => {
 //   title,
