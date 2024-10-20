@@ -37,35 +37,4 @@ const taskFactory = () => {
 
 const Task = taskFactory();
 
-// function Task() => {
-//   title,
-//   dueDate = null,
-//   priority = "low",
-//   description = "",
-//   completed = false
-//   //add project
-//   //add incrementing taskid
-// ) {
-//   if (!title) {
-//     throw new Error("Title is a required fields");
-//   }
-
-//   return {
-//     title,
-//     dueDate,
-//     priority,
-//     description,
-//     completed,
-
-//     // You can also add methods here if needed
-//     markAsCompleted() {
-//       this.completed = true;
-//     },
-
-//     updateDueDate(newDate) {
-//       this.dueDate = newDate;
-//     },
-//   };
-// }
-
 export { Task };
