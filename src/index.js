@@ -1,7 +1,9 @@
 import _, { forEach } from "lodash";
 import "./style.css";
 import { addTaskFromForm, addTaskFromForm2 } from "./createTask.js";
+import { addNewProject } from "./createProject.js"
 import { Task } from "./TaskComponent.js";
+import { Project } from "./ProjectComponent.js"
 //import addTaskToList from './taskHandler.js'
 import { sub } from "date-fns";
 import Calendar from "./images/calendar-range-outline.svg";
@@ -47,3 +49,13 @@ tasklist.addEventListener("change", function (e) {
     console.log("completed task");
   }
 });
+
+const addProjectBtn = document.querySelector("#add-project");
+
+addProjectBtn.addEventListener("click", () => {
+  
+  addNewProject();
+  //const projectNameInput = document.querySelector("#project-name");
+  
+  
+})
