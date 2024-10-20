@@ -20,24 +20,15 @@ function addTaskFromForm2() {
   const taskDate = document.querySelector("#due-date").value;
 
   const newTask = Task(taskTitle, taskDate);
+  console.log(newTask);
 
   //add all code here instead
-  //todo: make sure task id working first!
+  //task item wrapper
   const taskItem = document.createElement("li");
   const taskDiv = document.createElement("div");
   taskDiv.className = "task-item";
   taskItem.appendChild(taskDiv);
   const fragment = document.createDocumentFragment();
-
-  const titleSpan = document.createElement("span");
-  titleSpan.textContent = newTask.taskTitle;
-  taskItem.appendChild(titleSpan);
-
-  //todo: toggle finished/not finished task
-  // const toggleBtn = document.createElement("button");
-  // toggleBtn.textContent = "Toggle Complete";
-  // toggleBtn.className = "toggle-complete"
-  // fragment.appendChild(toggleBtn);
 
   //todo: checkbox - if checked, completed boolean change
   //add value, id
@@ -45,37 +36,53 @@ function addTaskFromForm2() {
   checkbox.type = "checkbox";
   checkbox.name = `task`;
   checkbox.value = `task`;
-  //checkbox.id = `checkbox ${task.title.trim()}`;
+  checkbox.setAttribute("data-id", `${newTask.taskId}`);
   fragment.appendChild(checkbox);
 
-  const dateSpan = addDueDate(task);
+  //title
+  const titleSpan = document.createElement("span");
+  titleSpan.className = "title";
+  titleSpan.setAttribute("data-id", `${newTask.taskId}`);
+  titleSpan.textContent = newTask.title;
+  fragment.appendChild(titleSpan);
+
+  //date
+  const dateSpan = document.createElement("span");
+  dateSpan.className = "date";
+  dateSpan.setAttribute("data-id", `${newTask.taskId}`);
+  dateSpan.textContent = newTask.dueDate;
   fragment.appendChild(dateSpan);
 
-  // const descriptionSpan = document.createElement("span");
-  // descriptionSpan.textContent = task.description;
-  // fragment.appendChild(descriptionSpan);
+  const descriptionSpan = document.createElement("span");
+  descriptionSpan.className = "description";
+  descriptionSpan.setAttribute("data-id", `${newTask.taskId}`);
+  fragment.appendChild(descriptionSpan);
 
   const prioSelect = document.createElement("select");
   prioSelect.className = "priority";
+  prioSelect.setAttribute("data-id", `${newTask.taskId}`);
   const prioLowOption = document.createElement("option");
   prioLowOption.value = "low";
   prioLowOption.textContent = "Low";
   prioSelect.appendChild(prioLowOption);
-
   const prioMedOption = document.createElement("option");
   prioMedOption.value = "med";
   prioMedOption.textContent = "Medium";
   prioSelect.appendChild(prioMedOption);
-
   const prioHighOption = document.createElement("option");
   prioHighOption.value = "high";
   prioHighOption.textContent = "High";
   prioSelect.appendChild(prioHighOption);
-
   fragment.appendChild(prioSelect);
 
-  taskItem.appendChild(fragment);
-  //return taskItem;
+  //edit button
+  const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit";
+  editBtn.className = "edit";
+  editBtn.setAttribute("data-id", `${newTask.taskId}`);
+  fragment.appendChild(editBtn);
+
+  taskDiv.appendChild(fragment);
 
   defaultList.appendChild(taskItem);
   emptyInput();
@@ -91,77 +98,7 @@ function addTaskFromInput() {
   emptyInput();
 }
 
-// function addTaskFromForm(task) {
-//   const taskItem = document.createElement("li");
-//   const fragment = document.createDocumentFragment();
-
-//   //todo: toggle finished/not finished task
-//   // const toggleBtn = document.createElement("button");
-//   // toggleBtn.textContent = "Toggle Complete";
-//   // toggleBtn.className = "toggle-complete"
-//   // fragment.appendChild(toggleBtn);
-
-//   const checkbox = addCheckbox(task);
-//   fragment.appendChild(checkbox);
-
-//   //const taskText = addTaskName(title);
-//   // const titleSpan = document.createElement("span");
-//   // titleSpan.textContent = task.title;
-//   const titleSpan = addTaskName(task);
-//   fragment.appendChild(titleSpan);
-
-//   const dateSpan = addDueDate(task);
-//   fragment.appendChild(dateSpan);
-
-//   // const descriptionSpan = document.createElement("span");
-//   // descriptionSpan.textContent = task.description;
-//   // fragment.appendChild(descriptionSpan);
-
-//   const prioSelect = document.createElement("select");
-//   prioSelect.className = "priority";
-//   const prioLowOption = document.createElement("option");
-//   prioLowOption.value = "low";
-//   prioLowOption.textContent = "Low";
-//   prioSelect.appendChild(prioLowOption);
-
-//   const prioMedOption = document.createElement("option");
-//   prioMedOption.value = "med";
-//   prioMedOption.textContent = "Medium";
-//   prioSelect.appendChild(prioMedOption);
-
-//   const prioHighOption = document.createElement("option");
-//   prioHighOption.value = "high";
-//   prioHighOption.textContent = "High";
-//   prioSelect.appendChild(prioHighOption);
-
-//   fragment.appendChild(prioSelect);
-
-//   taskItem.appendChild(fragment);
-//   //return taskItem;
-
-//   defaultList.appendChild(taskItem);
-//   emptyInput();
-// }
-
-// function addTaskFromInput() {
-//   const titleInput = document.querySelector("#task-name");
-//   const dateInput = document.querySelector("#due-date");
-
-//   const newTask = new Task(titleInput.value.trim(), dateInput.value);
-
-//   addTaskToList(newTask);
-//   emptyInput();
-// }
-
-// function addDueDate(task) {
-//   const dueDate = document.createElement("span");
-//   dueDate.textContent = task.dueDate;
-//   return dueDate;
-// }
-
-// function emptyInput() {
-//   input.value = "";
-//   date.value = "";
-// }
-
-// function saveChanges(task) {}
+function emptyInput() {
+  input.value = "";
+  date.value = "";
+}

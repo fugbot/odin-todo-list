@@ -3,8 +3,8 @@ const taskFactory = () => {
 
   return function createTask(
     title,
-    priority,
     dueDate = null,
+    priority,
     description = "",
     completed = false,
     projectId
@@ -18,8 +18,8 @@ const taskFactory = () => {
     return {
       taskId: taskCounter,
       title,
-      priority,
       dueDate,
+      priority,
       description,
       completed,
       projectId,
