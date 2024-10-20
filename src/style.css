@@ -5,31 +5,55 @@
 *:hover {
   border: 1px solid blue;
 }
+
+/* Page Container */
 .page-container {
   display: grid;
-  grid-template-columns: 1fr 3fr 2fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-columns: 1fr 2fr 1.5fr;
+  grid-template-rows: 1fr 90vh;
+
+}
+
+.header, .main, .description-view, .sidebar {
+  padding: 20px;
+}
+
+.sidebar {
+  background-color: cornflowerblue;
+  color: rgb(255, 255, 255);
+  grid-area: 1 / 1 / 3 / 2;
+}
+
+.sidebar button {
+  background-color: cornflowerblue;
+  color: white;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  margin-bottom: 20px; 
+}
+
+input#project-name-input {
+  display:none;
+  width: auto;
+  border-radius: 4px;
 }
 
 .header {
   grid-area: 1 / 2 / 2 / 4;
-  box-shadow: 10px 10px 5px lightblue;
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 10%);
+  
 }
 
 .main {
   grid-area: 2 / 2 / 3 / 3;
-  box-shadow: 10px 10px 5px lightblue;
+  box-shadow: 2px 2px 2px 1px rgb(0 0 0 / 10%);
 }
 
 .description-view {
   grid-area: 2 / 3 / 3 / 4;
 }
 
-/* side bar */
-.sidebar {
-  background-color: cornflowerblue;
-  grid-area: 1 / 1 / 3 / 2;
-}
+
 
 /* task input */
 button {
