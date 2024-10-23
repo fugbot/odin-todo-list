@@ -7,7 +7,7 @@ const taskFactory = () => {
     priority,
     description = "",
     completed = false,
-    projectId
+    projectId = "inbox"
   ) {
     if (!title) {
       throw new Error("Title is required");
