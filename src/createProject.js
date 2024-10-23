@@ -5,6 +5,8 @@ export { addNewProject };
 
 const addProjectBtn = document.querySelector("#add-project");
 
+export const defaultProject = Project("Inbox");
+
 
 function addNewProject() {
     //todo: logic
@@ -12,11 +14,26 @@ function addNewProject() {
     //place input directly into html, set to hidden
     //if it's shown, do nothing
     //if it's hidden, open
-    
-    const projectList = document.querySelector(".projects");
+    const projectInput = document.querySelector("#project-name-input")
+    const projectName = projectInput.value.trim();
+    console.log(projectName)
+    const newProject = Project(projectName);
+    console.log(newProject);
 
-    const projectNameInput = document.querySelector("#project-name-input");
-    projectNameInput.style.display = projectNameInput.style.display === 'none' ? 'block' : 'none';
+    //title taken from input
+    //create new project component with title
+    //add project to list
+    const projectList = document.querySelector(".project-list");
+    const projectItem = document.createElement("div");
+    projectItem.textContent = newProject.title;
+    projectList.appendChild(projectItem);
+    
+    //empty input, hide input again
+    projectInput.value = "";
+    projectInput.style.display = "none";
+
+    // projectNameInput.style.display = projectNameInput.style.display === 'none' ? 'block' : 'none';
 
     //const newProject = Project(title);
 }
+
