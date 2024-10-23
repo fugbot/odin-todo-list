@@ -1,19 +1,12 @@
 import { Task } from "./TaskComponent.js";
+import { Project } from "./ProjectComponent.js"
+import { defaultProject } from "./createProject.js";
 
 export { addTaskFromForm2 };
-
-// const input = document.getElementById("task-name");
-// const date = document.querySelector("#due-date");
-
-// const defaultList = document.querySelector(".default");
 
 const defaultList = document.querySelector(".default");
 const input = document.getElementById("task-name");
 const date = document.querySelector("#due-date");
-
-// function createTask() {
-//   return new Task(title, dueDate, priority, description, completed);
-// }
 
 function addTaskFromForm2() {
   const taskTitle = document.querySelector("#task-name").value.trim();
@@ -22,7 +15,6 @@ function addTaskFromForm2() {
   const newTask = Task(taskTitle, taskDate);
   console.log(newTask);
 
-  //add all code here instead
   //task item wrapper
   const taskItem = document.createElement("li");
   const taskDiv = document.createElement("div");
@@ -86,17 +78,14 @@ function addTaskFromForm2() {
 
   defaultList.appendChild(taskItem);
   emptyInput();
+
+  //todo: if non-default project selected
+  //add task to default project
+  defaultProject.addTask(newTask);
+  
+  
 }
 
-function addTaskFromInput() {
-  const titleInput = document.querySelector("#task-name");
-  const dateInput = document.querySelector("#due-date");
-
-  const newTask = new Task(titleInput.value.trim(), dateInput.value);
-
-  addTaskToList(newTask);
-  emptyInput();
-}
 
 function emptyInput() {
   input.value = "";
