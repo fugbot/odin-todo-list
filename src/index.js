@@ -14,7 +14,7 @@ const defaultList = document.querySelector(".default");
 
 const taskItems = [];
 
-const input = document.querySelector(".taskInput");
+const taskInput = document.querySelector(".taskInput");
 const date = document.querySelector("#due-date");
 const submitBtn = document.querySelector("#submit");
 const checkboxes = document.querySelectorAll("input[type=checkbox]");
@@ -28,7 +28,7 @@ submitBtn.addEventListener("click", () => {
   addTaskFromForm2();
 });
 
-input.addEventListener("keydown", function (e) {
+taskInput.addEventListener("keydown", function (e) {
   if (e.code === "Enter") {
     //checks whether the pressed key is "Enter"
     //addTaskFromForm();
@@ -52,10 +52,18 @@ tasklist.addEventListener("change", function (e) {
 
 const addProjectBtn = document.querySelector("#add-project");
 
+const projectNameInput = document.querySelector("#project-name-input");
 addProjectBtn.addEventListener("click", () => {
+    projectNameInput.style.display = projectNameInput.style.display === 'none' ? 'block' : 'none';
   
-  addNewProject();
   //const projectNameInput = document.querySelector("#project-name");
   
   
+})
+
+projectNameInput.addEventListener("keydown", function (e) {
+  if (e.code === "Enter") {
+    addNewProject();
+    
+  }
 })
