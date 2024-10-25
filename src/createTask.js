@@ -1,7 +1,7 @@
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 import { defaultProject } from "./index.js";
-import { projectStorage } from "./createProject.js";
+import { projectStorage, projectState } from "./createProject.js";
 
 export { addTaskFromForm2, taskState, openEditModal };
 
@@ -115,8 +115,27 @@ const taskState = {
 };
 
 function openEditModal(){
-  const taskId = taskState.getTaskId();
-  console.log("open edit modal:" + taskId);
+  const dialog = document.querySelector("dialog")
+  const taskId = Number(taskState.getTaskId());
 
+  const projectId = projectState.getProjectId();
+  console.log("projectId " + projectId);
+
+  const currentProject = projectStorage.findProject(projectId);
+  const currentTask = currentProject.findTask(taskId)
+  console.log(currentTask)
+
+  dialog.showModal();
   
+  //populate modal with task data
+  const titleInput = document.querySelector("#edit-task-name");
+  const descriptionInput = document.querySelector("#edit-description");
+  const dateInput = document.querySelector("#edit-date");
+  const prioSelect = document.querySelector("#edit-priority");
+
+  titleInput.value=currentTask.title;
+  descriptionInput.value = currentTask.description;
+  dateInput.value = currentTask.dueDate;
+  prioSelect.value = currentTask.priority;
+
 };

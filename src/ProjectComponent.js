@@ -17,6 +17,10 @@ const projectFactory = () => {
         return tasks;
       },
 
+      findTask(id) {
+        return tasks.find(task => task.taskId === id);
+      },
+
       addTask(task) {
         tasks.push(task);
         //todo: check if task already exists
