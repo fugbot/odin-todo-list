@@ -1,11 +1,9 @@
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 
-export { addNewProject };
+export { addNewProject, projectState, projectStorage };
 
 const addProjectBtn = document.querySelector("#add-project");
-
-export const defaultProject = Project("Inbox");
 
 
 function addNewProject() {
@@ -17,8 +15,12 @@ function addNewProject() {
     const projectInput = document.querySelector("#project-name-input")
     const projectName = projectInput.value.trim();
     console.log(projectName)
+    
+    //create new project object, add project to project array
     const newProject = Project(projectName);
     console.log(newProject);
+    projectStorage.addProject(newProject);
+    console.log(projectStorage.getAllProjects());
 
     //title taken from input
     //create new project component with title
@@ -36,4 +38,32 @@ function addNewProject() {
 
     //const newProject = Project(title);
 }
+
+const projectState = {
+    currentProjectId: null,
+
+    setProjectId(id) {
+        this.currentProjectId = id;
+    },
+    getProjectId(){
+        return this.currentProjectId;
+    }
+}
+
+const projectStorage = {
+    projects: new Array(),
+    addProject(project) {
+        this.projects.push(project);
+    },
+    findProject(id) {
+        return this.projects.find(project => project.projectId === id);
+    },
+    getAllProjects() {
+        return Array.from(this.projects.values());
+    }
+} 
+
+
+
+
 
