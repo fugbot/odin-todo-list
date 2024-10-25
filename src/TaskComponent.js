@@ -24,6 +24,14 @@ const taskFactory = () => {
       completed,
       projectId,
 
+      getTaskData() {
+        return {
+          taskId: this.taskId,
+          title: this.title,
+
+        }
+      },
+
       markAsCompleted() {
         this.completed = true;
       },
