@@ -15,12 +15,27 @@ const tasklist = document.querySelector(".tasklists");
 const taskInput = document.querySelector(".taskInput");
 const date = document.querySelector("#due-date");
 const submitBtn = document.querySelector("#submit");
+
 export const defaultProject = Project("Inbox");
+export const defaultTask = Task("Get Groceries");
 
 function initDefaultPage() {
   
   projectStorage.addProject(defaultProject);
-  console.log(projectStorage.getAllProjects())
+  projectState.setProjectId(defaultProject.projectId);
+
+  defaultProject.addTask(defaultTask);
+
+  //todo: fix date
+  document.querySelector(".tasklists .task-item").setAttribute("data-id", defaultTask.taskId);
+  document.querySelector(".tasklists input[name='task']").setAttribute("data-id", defaultTask.taskId);
+  document.querySelector(".tasklists .title").setAttribute("data-id", defaultTask.taskId);
+  document.querySelector(".tasklists .description").setAttribute("data-id", defaultTask.taskId);
+  document.querySelector(".tasklists .date").setAttribute("data-id", defaultTask.taskId);
+  document.querySelector(".tasklists .priority").setAttribute("data-id", defaultTask.taskId);
+  document.querySelector(".tasklists button.edit").setAttribute("data-id", defaultTask.taskId);
+  
+  console.log(defaultProject);
   
 }
 
@@ -65,7 +80,7 @@ tasklist.addEventListener("click", (e) => {
     currentTaskId = editBtn.getAttribute("data-id");
     console.log("event listener: " + currentTaskId);
     taskState.setTaskId(currentTaskId);
-    currentProjectId = 
+     
     openEditModal();
   }
 })

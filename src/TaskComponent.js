@@ -4,7 +4,7 @@ const taskFactory = () => {
   return function createTask(
     title,
     dueDate = null,
-    priority,
+    priority = "low",
     description = "",
     completed = false,
     projectId = 1
