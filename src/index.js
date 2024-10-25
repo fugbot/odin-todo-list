@@ -1,6 +1,6 @@
 import _, { forEach } from "lodash";
 import "./style.css";
-import { addTaskFromForm, addTaskFromForm2 } from "./createTask.js";
+import { addTaskFromForm2, taskState, openEditModal } from "./createTask.js";
 import { addNewProject } from "./createProject.js"
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
@@ -9,19 +9,11 @@ import { sub } from "date-fns";
 import Calendar from "./images/calendar-range-outline.svg";
 
 const tasklist = document.querySelector(".tasklists");
-const taskInputDiv = document.querySelector(".taskInput");
-const defaultList = document.querySelector(".default");
-
-const taskItems = [];
 
 const taskInput = document.querySelector(".taskInput");
 const date = document.querySelector("#due-date");
 const submitBtn = document.querySelector("#submit");
-const checkboxes = document.querySelectorAll("input[type=checkbox]");
 
-// const calendarSvg = new Image();
-// calendarSvg.src = Calendar;
-// taskInputDiv.appendChild(calendarSvg);
 
 submitBtn.addEventListener("click", () => {
   //addTaskFromForm();
@@ -50,13 +42,27 @@ tasklist.addEventListener("change", function (e) {
   }
 });
 
+const editDialog = document.querySelector("dialog");
+
+tasklist.addEventListener("click", (e) => {
+  const editBtn = e.target.closest("button.edit");
+  let currentTaskId = null;
+  if (editBtn) {
+    e.preventDefault()
+    //editDialog.showModal();
+    currentTaskId = editBtn.getAttribute("data-id");
+    console.log("event listener: " + currentTaskId);
+    taskState.setTaskId(currentTaskId);
+    openEditModal();
+  }
+})
+
+
 const addProjectBtn = document.querySelector("#add-project");
 
 const projectNameInput = document.querySelector("#project-name-input");
 addProjectBtn.addEventListener("click", () => {
     projectNameInput.style.display = projectNameInput.style.display === 'none' ? 'block' : 'none';
-  
-  //const projectNameInput = document.querySelector("#project-name");
   
   
 })
