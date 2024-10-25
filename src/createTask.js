@@ -2,7 +2,7 @@ import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 import { defaultProject } from "./createProject.js";
 
-export { addTaskFromForm2 };
+export { addTaskFromForm2, taskState, openEditModal };
 
 const defaultList = document.querySelector(".default");
 const input = document.getElementById("task-name");
@@ -86,8 +86,34 @@ function addTaskFromForm2() {
   
 }
 
+function editTask() {
+  const editDialog = document.querySelector("dialog");
+  //let currentTaskId = document.querySelector.("button");
+  currentTaskId = 
+  console.log(Task.getTaskData())
+}
+
 
 function emptyInput() {
   input.value = "";
   date.value = "";
 }
+
+const taskState = {
+  currentTaskId: null,
+  
+  setTaskId(id) {
+      this.currentTaskId = id;
+  },
+  
+  getTaskId() {
+      return this.currentTaskId;
+  }
+};
+
+function openEditModal(){
+  const taskId = taskState.getTaskId();
+  console.log("open edit modal:" + taskId);
+
+  
+};
