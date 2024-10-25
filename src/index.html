@@ -37,7 +37,7 @@
         <div class="tasklists">
           <ul class="default">
             <li>
-              <div class="task-item">
+              <div class="task-item" data-id="0">
                 <input type="checkbox" name="task" value="task" />
                 <span class="title">Get Groceries</span>
                 <span class="description">Apples, Bananas, Noodles</span>
@@ -47,7 +47,7 @@
                   <option value="med">Medium</option>
                   <option value="high">High</option>
                 </select>
-                <button class="edit">Edit</button>
+                <button class="edit" data-id="0">Edit</button>
               </div>
             </li>
 
@@ -65,10 +65,43 @@
             </li>
           </ul>
         </div>
+        <dialog class="edit">
+          <p>Edit task here</p>
+          <input
+            type="text"
+            id="edit-task-name"
+            name="edit-task-name"
+            placeholder="What do I need to do?"
+          />
+          <input type="date" id="edit-date" name="edit-date" />
+          <button type="submit" id="edit-confirm" name="edit-confirm">Save</button>
+          <input type="text" id="edit-description" name="edit-description" placeholder="Description"/>
+          <select class="priority">
+            <option value="low">Low</option>
+            <option value="med">Medium</option>
+            <option value="high">High</option>
+          </select>
+          <span class="close">X</span>
+        </dialog>
+        
+  
       </div>
 
-      <div class="description-view">Description of stuff</div>
-    </div>
+      <!-- <div class="description-view">
+        <h2>
+          Description of stuff
+        </h2>
+        <div class="title">Clean house</div>
+        <div class="description">How do i clean the house??</div>
+        <div class="date">2024-10-21</div>
+        <select class="priority">
+          <option value="low">Low</option>
+          <option value="med">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <div class="project">Project Name</div>
+      </div>
+    </div> -->
 
     <script src="./src/index.js"></script>
   </body>
