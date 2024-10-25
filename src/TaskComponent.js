@@ -7,7 +7,7 @@ const taskFactory = () => {
     priority,
     description = "",
     completed = false,
-    projectId = "inbox"
+    projectId = 1
   ) {
     if (!title) {
       throw new Error("Title is required");
@@ -24,7 +24,7 @@ const taskFactory = () => {
       completed,
       projectId,
 
-      getTaskData() {
+      getTaskData(id) {
         return {
           taskId: this.taskId,
           title: this.title,

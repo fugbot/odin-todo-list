@@ -1,19 +1,30 @@
 import _, { forEach } from "lodash";
 import "./style.css";
 import { addTaskFromForm2, taskState, openEditModal } from "./createTask.js";
-import { addNewProject } from "./createProject.js"
+import { addNewProject, projectState, projectStorage } from "./createProject.js"
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 //import addTaskToList from './taskHandler.js'
 import { sub } from "date-fns";
 import Calendar from "./images/calendar-range-outline.svg";
 
+
+
 const tasklist = document.querySelector(".tasklists");
 
 const taskInput = document.querySelector(".taskInput");
 const date = document.querySelector("#due-date");
 const submitBtn = document.querySelector("#submit");
+export const defaultProject = Project("Inbox");
 
+function initDefaultPage() {
+  
+  projectStorage.addProject(defaultProject);
+  console.log(projectStorage.getAllProjects())
+  
+}
+
+initDefaultPage();
 
 submitBtn.addEventListener("click", () => {
   //addTaskFromForm();
@@ -47,12 +58,14 @@ const editDialog = document.querySelector("dialog");
 tasklist.addEventListener("click", (e) => {
   const editBtn = e.target.closest("button.edit");
   let currentTaskId = null;
+  let currentProjectId = null;
   if (editBtn) {
     e.preventDefault()
     //editDialog.showModal();
     currentTaskId = editBtn.getAttribute("data-id");
     console.log("event listener: " + currentTaskId);
     taskState.setTaskId(currentTaskId);
+    currentProjectId = 
     openEditModal();
   }
 })

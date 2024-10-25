@@ -1,6 +1,7 @@
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
-import { defaultProject } from "./createProject.js";
+import { defaultProject } from "./index.js";
+import { projectStorage } from "./createProject.js";
 
 export { addTaskFromForm2, taskState, openEditModal };
 
@@ -76,12 +77,14 @@ function addTaskFromForm2() {
 
   taskDiv.appendChild(fragment);
 
+  //todo: change project based on which project is currently selected
   defaultList.appendChild(taskItem);
   emptyInput();
-
+  
   //todo: if non-default project selected
   //add task to default project
   defaultProject.addTask(newTask);
+  console.log(projectStorage.findProject(1))
   
   
 }
