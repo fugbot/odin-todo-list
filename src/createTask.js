@@ -5,18 +5,26 @@ import { projectStorage, projectState } from "./createProject.js";
 
 export { addTaskFromForm2, taskState, openEditModal, updateTask };
 
-const defaultList = document.querySelector(".default");
+const taskListUl = document.querySelector(".task-list");
 const input = document.getElementById("task-name");
 const date = document.querySelector("#due-date");
 const dialog = document.querySelector("dialog")
 
 function addTaskFromForm2() {
+  const currentProjectId = Number(projectState.getProjectId());
+  const currentProject = projectStorage.findProject(currentProjectId);
+  //const tasks = currentProject.getProjectTasks();
+
   const taskTitle = document.querySelector("#task-name").value.trim();
   const taskDate = document.querySelector("#due-date").value;
 
+  //init task object, add to project array
   const newTask = Task(taskTitle, taskDate);
+  newTask.projectId = currentProjectId;
+  currentProject.addTask(newTask);
   const fragment = document.createDocumentFragment();
   console.log(newTask);
+  console.log(currentProject);
 
   //task item wrapper
   const taskItem = document.createElement("li");
@@ -80,12 +88,12 @@ function addTaskFromForm2() {
   taskDiv.appendChild(fragment);
 
   //todo: change project based on which project is currently selected
-  defaultList.appendChild(taskItem);
+  taskListUl.appendChild(taskItem);
   emptyInput();
   
   //todo: if non-default project selected
   //add task to default project
-  defaultProject.addTask(newTask);
+  currentProject.addTask(newTask);
   console.log(projectStorage.findProject(1))
   
   
