@@ -71,7 +71,7 @@ function displayAllProjectTasks(){
     const tasks = currentProject.getProjectTasks();
     console.log(tasks);
 
-    const ul = document.querySelector("ul.default");
+    const ul = document.querySelector("ul.task-list");
     ul.innerHTML = '';
 
     tasks.forEach((task) => {
