@@ -8,12 +8,14 @@ export { addTaskFromForm2, taskState, openEditModal, updateTask };
 const defaultList = document.querySelector(".default");
 const input = document.getElementById("task-name");
 const date = document.querySelector("#due-date");
+const dialog = document.querySelector("dialog")
 
 function addTaskFromForm2() {
   const taskTitle = document.querySelector("#task-name").value.trim();
   const taskDate = document.querySelector("#due-date").value;
 
   const newTask = Task(taskTitle, taskDate);
+  const fragment = document.createDocumentFragment();
   console.log(newTask);
 
   //task item wrapper
@@ -22,7 +24,6 @@ function addTaskFromForm2() {
   taskDiv.className = "task-item";
   taskDiv.setAttribute("data-id", `${newTask.taskId}`)
   taskItem.appendChild(taskDiv);
-  const fragment = document.createDocumentFragment();
 
   //todo: checkbox - if checked, completed boolean change
   //add value, id
@@ -90,14 +91,6 @@ function addTaskFromForm2() {
   
 }
 
-function editTask() {
-  const editDialog = document.querySelector("dialog");
-  //let currentTaskId = document.querySelector.("button");
-  currentTaskId = 
-  console.log(Task.getTaskData())
-}
-
-
 function emptyInput() {
   input.value = "";
   date.value = "";
@@ -142,7 +135,7 @@ function openEditModal(){
 };
 
 function updateTask(){
-  const dialog = document.querySelector("dialog")
+  //getCurrentTaskProject()
   const taskId = Number(taskState.getTaskId());
 
   const projectId = projectState.getProjectId();
@@ -170,3 +163,13 @@ function updateTask(){
   taskItem.querySelector(".priority").value = currentTask.priority;
 
 }
+
+// function getCurrentTaskProject(){
+//   const taskId = Number(taskState.getTaskId());
+
+//   const projectId = projectState.getProjectId();
+//   //console.log("projectId " + projectId);
+
+//   const currentProject = projectStorage.findProject(projectId);
+//   const currentTask = currentProject.findTask(taskId)
+// }
