@@ -1,7 +1,7 @@
 import _, { forEach } from "lodash";
 import "./style.css";
 import { addTaskFromForm2, taskState, openEditModal, updateTask } from "./createTask.js";
-import { addNewProject, projectState, projectStorage } from "./createProject.js"
+import { addNewProject, displayAllProjectTasks, projectState, projectStorage } from "./createProject.js"
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 //import addTaskToList from './taskHandler.js'
@@ -23,10 +23,12 @@ function initDefaultPage() {
   
   projectStorage.addProject(defaultProject);
   projectState.setProjectId(defaultProject.projectId);
+  console.log(defaultProject.projectId);
+  document.querySelector(".project").setAttribute("data-id", defaultProject.projectId);
 
   defaultProject.addTask(defaultTask);
 
-  //todo: fix date
+  //default task
   document.querySelector(".tasklists .task-item").setAttribute("data-id", defaultTask.taskId);
   document.querySelector(".tasklists input[name='task']").setAttribute("data-id", defaultTask.taskId);
   document.querySelector(".tasklists .title").setAttribute("data-id", defaultTask.taskId);
@@ -107,14 +109,27 @@ const addProjectBtn = document.querySelector("#add-project");
 
 const projectNameInput = document.querySelector("#project-name-input");
 addProjectBtn.addEventListener("click", () => {
-    projectNameInput.style.display = projectNameInput.style.display === 'none' ? 'block' : 'none';
-  
-  
+    projectNameInput.style.display = projectNameInput.style.display === 'none' ? 'block' : 'none'; 
 })
 
 projectNameInput.addEventListener("keydown", function (e) {
   if (e.code === "Enter") {
     addNewProject();
+  }
+})
+
+const projectContainer = document.querySelector(".sidebar");
+projectContainer.addEventListener("click", (e) => {
+  const projectBtn = e.target.closest(".project");
+  //let currentTaskId = null;
+  let currentProjectId = null;
+  if (projectBtn) {
+    e.preventDefault()
     
+    currentProjectId = projectBtn.getAttribute("data-id");
+    console.log("event listener: " + currentProjectId);
+    projectState.setProjectId(currentProjectId);
+     
+    displayAllProjectTasks();
   }
 })
