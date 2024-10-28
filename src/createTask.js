@@ -91,12 +91,6 @@ function addTaskFromForm2() {
   taskListUl.appendChild(taskItem);
   emptyInput();
   
-  //todo: if non-default project selected
-  //add task to default project
-  currentProject.addTask(newTask);
-  console.log(projectStorage.findProject(1))
-  
-  
 }
 
 function emptyInput() {
@@ -120,7 +114,7 @@ function openEditModal(){
   const dialog = document.querySelector("dialog")
   const taskId = Number(taskState.getTaskId());
 
-  const projectId = projectState.getProjectId();
+  const projectId = Number(projectState.getProjectId());
   console.log("projectId " + projectId);
 
   const currentProject = projectStorage.findProject(projectId);
@@ -146,7 +140,7 @@ function updateTask(){
   //getCurrentTaskProject()
   const taskId = Number(taskState.getTaskId());
 
-  const projectId = projectState.getProjectId();
+  const projectId = Number(projectState.getProjectId());
   //console.log("projectId " + projectId);
 
   const currentProject = projectStorage.findProject(projectId);
