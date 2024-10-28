@@ -3,7 +3,7 @@ import { Project } from "./ProjectComponent.js"
 import { defaultProject } from "./index.js";
 import { projectStorage, projectState } from "./createProject.js";
 
-export { addTaskFromForm2, taskState, openEditModal };
+export { addTaskFromForm2, taskState, openEditModal, updateTask };
 
 const defaultList = document.querySelector(".default");
 const input = document.getElementById("task-name");
@@ -20,6 +20,7 @@ function addTaskFromForm2() {
   const taskItem = document.createElement("li");
   const taskDiv = document.createElement("div");
   taskDiv.className = "task-item";
+  taskDiv.setAttribute("data-id", `${newTask.taskId}`)
   taskItem.appendChild(taskDiv);
   const fragment = document.createDocumentFragment();
 
@@ -139,3 +140,33 @@ function openEditModal(){
   prioSelect.value = currentTask.priority;
 
 };
+
+function updateTask(){
+  const dialog = document.querySelector("dialog")
+  const taskId = Number(taskState.getTaskId());
+
+  const projectId = projectState.getProjectId();
+  //console.log("projectId " + projectId);
+
+  const currentProject = projectStorage.findProject(projectId);
+  const currentTask = currentProject.findTask(taskId)
+  
+  const titleInput = document.querySelector("#edit-task-name");
+  const descriptionInput = document.querySelector("#edit-description");
+  const dateInput = document.querySelector("#edit-date");
+  const prioSelect = document.querySelector("#edit-priority");
+  currentTask.title = titleInput.value;
+  currentTask.description = descriptionInput.value;
+  currentTask.dueDate = dateInput.value;
+  currentTask.priority = prioSelect.value;
+  console.log(currentTask)
+  dialog.close();
+
+  //alter task display
+  const taskItem = document.querySelector(`.task-item[data-id="${currentTask.taskId}"]`);
+  taskItem.querySelector(".title").textContent = currentTask.title;
+  taskItem.querySelector(".description").textContent = currentTask.description;
+  taskItem.querySelector(".date").textContent = currentTask.dueDate;
+  taskItem.querySelector(".priority").value = currentTask.priority;
+
+}

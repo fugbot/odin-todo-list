@@ -1,6 +1,6 @@
 import _, { forEach } from "lodash";
 import "./style.css";
-import { addTaskFromForm2, taskState, openEditModal } from "./createTask.js";
+import { addTaskFromForm2, taskState, openEditModal, updateTask } from "./createTask.js";
 import { addNewProject, projectState, projectStorage } from "./createProject.js"
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
@@ -68,6 +68,7 @@ tasklist.addEventListener("change", function (e) {
   }
 });
 
+//edit and save tasks
 const editDialog = document.querySelector("dialog");
 
 tasklist.addEventListener("click", (e) => {
@@ -85,7 +86,23 @@ tasklist.addEventListener("click", (e) => {
   }
 })
 
+editDialog.addEventListener("click", (e) => {
+  const saveBtn = e.target.closest("button#edit-confirm");
+  if (saveBtn) {
+    e.preventDefault()
+    // //editDialog.showModal();
+    // currentTaskId = editBtn.getAttribute("data-id");
+    // console.log("event listener: " + currentTaskId);
+    // taskState.setTaskId(currentTaskId);
+     
+    // openEditModal();
+    console.log("Saved button pressed");
+    updateTask();
+  }
+})
 
+
+//add projects
 const addProjectBtn = document.querySelector("#add-project");
 
 const projectNameInput = document.querySelector("#project-name-input");
