@@ -1,6 +1,7 @@
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 import { populateStorage } from "./checkLocalStorage.js";
+import pencilSvg from "./images/pencil-outline.svg"
 
 export { addNewProject, displayAllProjects, displayAllProjectTasks, projectState, projectStorage };
 
@@ -141,7 +142,11 @@ function displayAllProjectTasks(){
 
         //edit button
         const editBtn = document.createElement("button");
-        editBtn.textContent = "Edit";
+        const img = document.createElement("img");
+        img.src = pencilSvg;
+        editBtn.appendChild(img);
+        //editBtn.textContent = "Edit";
+        //editBtn.innerHTML = pencilSvg;
         editBtn.className = "edit";
         editBtn.setAttribute("data-id", `${task.taskId}`);
         fragment.appendChild(editBtn);

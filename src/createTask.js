@@ -2,6 +2,7 @@ import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 import { projectStorage, projectState } from "./createProject.js";
 import {populateStorage} from "./checkLocalStorage.js";
+import pencilSvg from "./images/pencil-outline.svg"
 
 export { addTaskFromForm2, taskState, openEditModal, updateTask };
 
@@ -78,7 +79,11 @@ function addTaskFromForm2() {
 
   //edit button
   const editBtn = document.createElement("button");
-  editBtn.textContent = "Edit";
+  const img = document.createElement("img");
+        img.src = pencilSvg;
+        editBtn.appendChild(img);
+  //editBtn.textContent = "Edit";
+  //editBtn.innerHTML = pencilSvg;
   editBtn.className = "edit";
   editBtn.setAttribute("data-id", `${newTask.taskId}`);
   fragment.appendChild(editBtn);
