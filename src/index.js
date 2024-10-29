@@ -112,8 +112,16 @@ tasklist.addEventListener("click", (e) => {
 editDialog.addEventListener("click", (e) => {
   const saveBtn = e.target.closest("button#edit-confirm");
   if (saveBtn) {
-    e.preventDefault()
+    e.preventDefault();
     updateTask();
+  }
+})
+
+editDialog.addEventListener("click", (e) => {
+  const exitBtn = e.target.closest(".close");
+  if (exitBtn) {
+    e.preventDefault();
+    editDialog.close();
   }
 })
 
