@@ -2,7 +2,7 @@ import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 import { populateStorage } from "./checkLocalStorage.js";
 
-export { addNewProject, displayAllProjectTasks, projectState, projectStorage };
+export { addNewProject, displayAllProjects, displayAllProjectTasks, projectState, projectStorage };
 
 const addProjectBtn = document.querySelector("#add-project");
 
@@ -64,8 +64,24 @@ const projectStorage = {
     }
 } 
 
+function displayAllProjects() {
+    const projectListContainer = document.querySelector(".project-list");
+    projectListContainer.innerHTML = "";
+    
+    const projects = projectStorage.getAllProjects();
+
+    projects.forEach((project) => {
+        const projectDiv = document.createElement("div");
+        projectDiv.className = "project";
+        projectDiv.setAttribute("data-id", `${project.projectId}`);
+        projectDiv.textContent = `${project.title}`;
+        projectListContainer.appendChild(projectDiv);
+
+    })
+}
+
 function displayAllProjectTasks(){
-    //console.log(projectState.getProjectId());
+    console.log(projectState.getProjectId());
     const currentProject = projectStorage.findProject(Number(projectState.getProjectId()));
     const tasks = currentProject.getProjectTasks();
     console.log(tasks);
