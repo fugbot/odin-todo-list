@@ -1,7 +1,7 @@
 import _, { forEach } from "lodash";
 import "./style.css";
 import { addTaskFromForm2, taskState, openEditModal, updateTask } from "./createTask.js";
-import { addNewProject, displayAllProjectTasks, projectState, projectStorage } from "./createProject.js"
+import { addNewProject, displayAllProjects, displayAllProjectTasks, projectState, projectStorage } from "./createProject.js"
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 import { storageAvailable,populateStorage, recreateProjects } from "./checkLocalStorage.js"
@@ -17,17 +17,18 @@ const taskInput = document.querySelector(".taskInput");
 const date = document.querySelector("#due-date");
 const submitBtn = document.querySelector("#submit");
 
-export const defaultProject = Project("Inbox");
-export const defaultTask = Task("Get Groceries");
 
 function initDefaultPage() {
   // if (storageAvailable("localStorage")) {
-  //   // Yippee! We can use localStorage awesomeness
-  //   console.log("yes local storage");
-  // } else {
-  //   // Too bad, no localStorage for us
-  //   console.log("no local storage");
-  // }
+    //   // Yippee! We can use localStorage awesomeness
+    //   console.log("yes local storage");
+    // } else {
+      //   // Too bad, no localStorage for us
+      //   console.log("no local storage");
+      // }
+      
+  const defaultProject = Project("Inbox");
+  const defaultTask = Task("Get Groceries");
   
   projectStorage.addProject(defaultProject);
   projectState.setProjectId(defaultProject.projectId);
@@ -59,8 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const localProjectStorage = JSON.parse(localStorage.getItem("projects"));
     projects = recreateProjects(localProjectStorage);
     //localStorage.setItem("projectStorage", JSON.stringify(projectStorage));
-    //display projects
-    //display tasks
+    
+    displayAllProjects();
+    //show inbox as default
+    projectState.setProjectId(1);
+    displayAllProjectTasks();
   }
 })
 

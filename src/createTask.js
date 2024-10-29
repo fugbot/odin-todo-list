@@ -1,6 +1,5 @@
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
-import { defaultProject } from "./index.js";
 import { projectStorage, projectState } from "./createProject.js";
 import {populateStorage} from "./checkLocalStorage.js";
 
