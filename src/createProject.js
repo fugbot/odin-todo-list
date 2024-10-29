@@ -1,5 +1,6 @@
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
+import { populateStorage } from "./checkLocalStorage.js";
 
 export { addNewProject, displayAllProjectTasks, projectState, projectStorage };
 
@@ -36,9 +37,7 @@ function addNewProject() {
     projectInput.value = "";
     projectInput.style.display = "none";
 
-    // projectNameInput.style.display = projectNameInput.style.display === 'none' ? 'block' : 'none';
-
-    //const newProject = Project(title);
+    populateStorage();
 }
 
 const projectState = {

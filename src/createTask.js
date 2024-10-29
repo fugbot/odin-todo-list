@@ -2,6 +2,7 @@ import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
 import { defaultProject } from "./index.js";
 import { projectStorage, projectState } from "./createProject.js";
+import {populateStorage} from "./checkLocalStorage.js";
 
 export { addTaskFromForm2, taskState, openEditModal, updateTask };
 
@@ -90,6 +91,8 @@ function addTaskFromForm2() {
   //todo: change project based on which project is currently selected
   taskListUl.appendChild(taskItem);
   emptyInput();
+
+  populateStorage();
   
 }
 
@@ -163,6 +166,8 @@ function updateTask(){
   taskItem.querySelector(".description").textContent = currentTask.description;
   taskItem.querySelector(".date").textContent = currentTask.dueDate;
   taskItem.querySelector(".priority").value = currentTask.priority;
+
+  populateStorage();
 
 }
 
