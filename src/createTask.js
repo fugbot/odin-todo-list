@@ -23,8 +23,6 @@ function addTaskFromForm2() {
   newTask.projectId = currentProjectId;
   currentProject.addTask(newTask);
   const fragment = document.createDocumentFragment();
-  console.log(newTask);
-  console.log(currentProject);
 
   //task item wrapper
   const taskItem = document.createElement("li");
@@ -117,11 +115,9 @@ function openEditModal(){
   const taskId = Number(taskState.getTaskId());
 
   const projectId = Number(projectState.getProjectId());
-  console.log("projectId " + projectId);
 
   const currentProject = projectStorage.findProject(projectId);
   const currentTask = currentProject.findTask(taskId)
-  console.log(currentTask)
 
   dialog.showModal();
   
@@ -143,7 +139,6 @@ function updateTask(){
   const taskId = Number(taskState.getTaskId());
 
   const projectId = Number(projectState.getProjectId());
-  //console.log("projectId " + projectId);
 
   const currentProject = projectStorage.findProject(projectId);
   const currentTask = currentProject.findTask(taskId)
@@ -156,7 +151,7 @@ function updateTask(){
   currentTask.description = descriptionInput.value;
   currentTask.dueDate = dateInput.value;
   currentTask.priority = prioSelect.value;
-  console.log(currentTask)
+
   dialog.close();
 
   //alter task display

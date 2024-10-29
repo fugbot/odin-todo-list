@@ -7,9 +7,6 @@ import { Project } from "./ProjectComponent.js"
 import { storageAvailable,populateStorage, recreateProjects } from "./checkLocalStorage.js"
 //import addTaskToList from './taskHandler.js'
 import { sub } from "date-fns";
-import Calendar from "./images/calendar-range-outline.svg";
-
-
 
 const tasklist = document.querySelector(".tasklists");
 
@@ -19,20 +16,13 @@ const submitBtn = document.querySelector("#submit");
 
 
 function initDefaultPage() {
-  // if (storageAvailable("localStorage")) {
-    //   // Yippee! We can use localStorage awesomeness
-    //   console.log("yes local storage");
-    // } else {
-      //   // Too bad, no localStorage for us
-      //   console.log("no local storage");
-      // }
       
   const defaultProject = Project("Inbox");
   const defaultTask = Task("Get Groceries");
   
   projectStorage.addProject(defaultProject);
   projectState.setProjectId(defaultProject.projectId);
-  console.log(defaultProject.projectId);
+  
   document.querySelector(".project").setAttribute("data-id", defaultProject.projectId);
   
   defaultProject.addTask(defaultTask);
@@ -46,26 +36,31 @@ function initDefaultPage() {
   document.querySelector(".tasklists .priority").setAttribute("data-id", defaultTask.taskId);
   document.querySelector(".tasklists button.edit").setAttribute("data-id", defaultTask.taskId);
   
-  console.log(defaultProject);
   populateStorage();
   
 }
 document.addEventListener("DOMContentLoaded", () => {
-  let projects;
-  if(!localStorage.getItem("projects")){
-    initDefaultPage(); //default init page
-  }else{
-    //setDefaultProjects(); //add existing projects/tasks
-    //setDefaultTasks();
-    const localProjectStorage = JSON.parse(localStorage.getItem("projects"));
-    projects = recreateProjects(localProjectStorage);
-    //localStorage.setItem("projectStorage", JSON.stringify(projectStorage));
-    
-    displayAllProjects();
-    //show inbox as default
-    projectState.setProjectId(1);
-    displayAllProjectTasks();
+  if (storageAvailable("localStorage")) {
+      // Yippee! We can use localStorage awesomeness
+      console.log("yes local storage");
+      let projects;
+      if(!localStorage.getItem("projects")){
+        initDefaultPage();
+      }else{
+        const localProjectStorage = JSON.parse(localStorage.getItem("projects"));
+        projects = recreateProjects(localProjectStorage);
+        
+        displayAllProjects();
+        //show inbox as default
+        projectState.setProjectId(1);
+        displayAllProjectTasks();
+      }
+  } else {
+      // Too bad, no localStorage for us
+      initDefaultPage();
+      console.log("no local storage");
   }
+  
 })
 
 
@@ -104,12 +99,10 @@ const editDialog = document.querySelector("dialog");
 tasklist.addEventListener("click", (e) => {
   const editBtn = e.target.closest("button.edit");
   let currentTaskId = null;
-  let currentProjectId = null;
   if (editBtn) {
     e.preventDefault()
     //editDialog.showModal();
     currentTaskId = editBtn.getAttribute("data-id");
-    console.log("event listener: " + currentTaskId);
     taskState.setTaskId(currentTaskId);
      
     openEditModal();
@@ -120,13 +113,6 @@ editDialog.addEventListener("click", (e) => {
   const saveBtn = e.target.closest("button#edit-confirm");
   if (saveBtn) {
     e.preventDefault()
-    // //editDialog.showModal();
-    // currentTaskId = editBtn.getAttribute("data-id");
-    // console.log("event listener: " + currentTaskId);
-    // taskState.setTaskId(currentTaskId);
-     
-    // openEditModal();
-    console.log("Saved button pressed");
     updateTask();
   }
 })
@@ -149,15 +135,11 @@ projectNameInput.addEventListener("keydown", function (e) {
 const projectContainer = document.querySelector(".sidebar");
 projectContainer.addEventListener("click", (e) => {
   const projectBtn = e.target.closest(".project");
-  //let currentTaskId = null;
   let currentProjectId = null;
   if (projectBtn) {
     e.preventDefault()
-    
     currentProjectId = projectBtn.getAttribute("data-id");
-    console.log("event listener: " + currentProjectId);
     projectState.setProjectId(currentProjectId);
-     
     displayAllProjectTasks();
   }
 })

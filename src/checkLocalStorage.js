@@ -27,15 +27,6 @@ function populateStorage(){
   localStorage.setItem("projects", JSON.stringify(projectStorage));
 }
 
-// if (storageAvailable("localStorage")) {
-//   // Yippee! We can use localStorage awesomeness
-//   console.log("yes local storage");
-// } else {
-//   // Too bad, no localStorage for us
-//   console.log("no local storage");
-// }
-
-
 function recreateProjects(localProjectStorage) {
   const projectList = projectStorage;
   localProjectStorage.projects.forEach((project) => {

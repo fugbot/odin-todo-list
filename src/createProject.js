@@ -15,13 +15,10 @@ function addNewProject() {
     //if it's hidden, open
     const projectInput = document.querySelector("#project-name-input")
     const projectName = projectInput.value.trim();
-    console.log(projectName)
     
     //create new project object, add project to project array
     const newProject = Project(projectName);
-    console.log(newProject);
     projectStorage.addProject(newProject);
-    console.log(projectStorage.getAllProjects());
 
     //title taken from input
     //create new project component with title
@@ -81,10 +78,8 @@ function displayAllProjects() {
 }
 
 function displayAllProjectTasks(){
-    console.log(projectState.getProjectId());
     const currentProject = projectStorage.findProject(Number(projectState.getProjectId()));
     const tasks = currentProject.getProjectTasks();
-    console.log(tasks);
 
     const ul = document.querySelector("ul.task-list");
     ul.innerHTML = '';
