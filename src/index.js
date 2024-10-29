@@ -4,6 +4,7 @@ import { addTaskFromForm2, taskState, openEditModal, updateTask } from "./create
 import { addNewProject, displayAllProjectTasks, projectState, projectStorage } from "./createProject.js"
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js"
+import { storageAvailable,populateStorage, recreateProjects } from "./checkLocalStorage.js"
 //import addTaskToList from './taskHandler.js'
 import { sub } from "date-fns";
 import Calendar from "./images/calendar-range-outline.svg";
@@ -20,14 +21,21 @@ export const defaultProject = Project("Inbox");
 export const defaultTask = Task("Get Groceries");
 
 function initDefaultPage() {
+  // if (storageAvailable("localStorage")) {
+  //   // Yippee! We can use localStorage awesomeness
+  //   console.log("yes local storage");
+  // } else {
+  //   // Too bad, no localStorage for us
+  //   console.log("no local storage");
+  // }
   
   projectStorage.addProject(defaultProject);
   projectState.setProjectId(defaultProject.projectId);
   console.log(defaultProject.projectId);
   document.querySelector(".project").setAttribute("data-id", defaultProject.projectId);
-
+  
   defaultProject.addTask(defaultTask);
-
+  
   //default task
   document.querySelector(".tasklists .task-item").setAttribute("data-id", defaultTask.taskId);
   document.querySelector(".tasklists input[name='task']").setAttribute("data-id", defaultTask.taskId);
@@ -38,10 +46,26 @@ function initDefaultPage() {
   document.querySelector(".tasklists button.edit").setAttribute("data-id", defaultTask.taskId);
   
   console.log(defaultProject);
+  populateStorage();
   
 }
+document.addEventListener("DOMContentLoaded", () => {
+  let projects;
+  if(!localStorage.getItem("projects")){
+    initDefaultPage(); //default init page
+  }else{
+    //setDefaultProjects(); //add existing projects/tasks
+    //setDefaultTasks();
+    const localProjectStorage = JSON.parse(localStorage.getItem("projects"));
+    projects = recreateProjects(localProjectStorage);
+    //localStorage.setItem("projectStorage", JSON.stringify(projectStorage));
+    //display projects
+    //display tasks
+  }
+})
 
-initDefaultPage();
+
+
 
 submitBtn.addEventListener("click", () => {
   //addTaskFromForm();
