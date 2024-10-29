@@ -18,7 +18,7 @@ const submitBtn = document.querySelector("#submit");
 function initDefaultPage() {
       
   const defaultProject = Project("Inbox");
-  const defaultTask = Task("Get Groceries");
+  const defaultTask = Task("Get Groceries", "2024-10-21", "low", "Apples, Bananas, Noodles");
   
   projectStorage.addProject(defaultProject);
   projectState.setProjectId(defaultProject.projectId);
