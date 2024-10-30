@@ -4,7 +4,13 @@ import { projectStorage, projectState } from "./createProject.js";
 import { populateStorage } from "./checkLocalStorage.js";
 import pencilSvg from "./images/pencil-outline.svg";
 
-export { addTaskFromForm2, taskState, openEditModal, updateTask };
+export {
+  addTaskFromForm2,
+  taskState,
+  openEditModal,
+  updateTask,
+  updateTaskStatus,
+};
 
 const taskListUl = document.querySelector(".task-list");
 const input = document.getElementById("task-name");
@@ -178,3 +184,19 @@ function updateTask() {
 //   const currentProject = projectStorage.findProject(projectId);
 //   const currentTask = currentProject.findTask(taskId)
 // }
+
+function updateTaskStatus() {
+  const taskId = Number(taskState.getTaskId());
+
+  const projectId = Number(projectState.getProjectId());
+
+  const currentProject = projectStorage.findProject(projectId);
+  const currentTask = currentProject.findTask(taskId);
+
+  currentTask.completed = !currentTask.completed;
+
+  const taskItemDiv = document.querySelector(
+    `[class="task-item"][data-id="${currentTask.taskId}"]`,
+  );
+  taskItemDiv.dataset.completed = currentTask.completed;
+}

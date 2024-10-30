@@ -5,6 +5,7 @@ import {
   taskState,
   openEditModal,
   updateTask,
+  updateTaskStatus,
 } from "./createTask.js";
 import {
   addNewProject,
@@ -117,8 +118,14 @@ date.addEventListener("keydown", function (e) {
 
 tasklist.addEventListener("change", function (e) {
   // But only alert for elements that have an alert-button class
-  if (e.target.querySelectorAll("input[type=checkbox]")) {
-    console.log("completed task");
+  const checkbox = e.target.closest("input[type=checkbox]");
+  let currentTaskId = null;
+  if (checkbox) {
+    e.preventDefault();
+
+    currentTaskId = checkbox.getAttribute("data-id");
+    taskState.setTaskId(currentTaskId);
+    updateTaskStatus();
   }
 });
 
@@ -133,8 +140,6 @@ tasklist.addEventListener("click", (e) => {
     //editDialog.showModal();
     currentTaskId = editBtn.getAttribute("data-id");
     taskState.setTaskId(currentTaskId);
-
-    openEditModal();
   }
 });
 
