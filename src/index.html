@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Do Things List</title>
-    <script src="https://unpkg.com/lodash@4.17.20"></script>
   </head>
-
   <body>
     <div class="page-container">
       <div class="header">
@@ -15,11 +14,15 @@
         <div class="projects">
           <h2>My Projects</h2>
           <button id="add-project">Add Project</button>
-          <input type="text" id="project-name-input" name="project-name-input" placeholder="Project Name" display="none">
+          <input
+            type="text"
+            id="project-name-input"
+            name="project-name-input"
+            placeholder="Project Name"
+          />
           <div class="project-list">
             <div class="project">Inbox</div>
           </div>
-          
         </div>
       </div>
       <div class="main">
@@ -48,7 +51,10 @@
                   <option value="high">High</option>
                 </select>
                 <button class="edit">
-                  <img src="https://legendary-sniffle-pj57r56q6xxhrj4v-8080.app.github.dev/c11ca64583db9195885d.svg">
+                  <img
+                    alt="pencil"
+                    src="https://legendary-sniffle-pj57r56q6xxhrj4v-8080.app.github.dev/c11ca64583db9195885d.svg"
+                  />
                 </button>
               </div>
             </li>
@@ -76,35 +82,24 @@
             placeholder="What do I need to do?"
           />
           <input type="date" id="edit-date" name="edit-date" />
-          <button type="submit" id="edit-confirm" name="edit-confirm">Save</button>
-          <input type="text" id="edit-description" name="edit-description" placeholder="Description"/>
+          <button type="submit" id="edit-confirm" name="edit-confirm">
+            Save
+          </button>
+          <input
+            type="text"
+            id="edit-description"
+            name="edit-description"
+            placeholder="Description"
+          />
           <select class="priority" id="edit-priority">
             <option value="low">Low</option>
             <option value="med">Medium</option>
             <option value="high">High</option>
           </select>
-          <button class="close">X</span>
+          <button class="close">X</button>
         </dialog>
-        
-  
       </div>
-
-      <!-- <div class="description-view">
-        <h2>
-          Description of stuff
-        </h2>
-        <div class="title">Clean house</div>
-        <div class="description">How do i clean the house??</div>
-        <div class="date">2024-10-21</div>
-        <select class="priority">
-          <option value="low">Low</option>
-          <option value="med">Medium</option>
-          <option value="high">High</option>
-        </select>
-        <div class="project">Project Name</div>
-      </div>
-    </div> -->
-
+    </div>
     <script src="./src/index.js"></script>
   </body>
 </html>

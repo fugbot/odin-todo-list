@@ -7,7 +7,7 @@ const taskFactory = () => {
     priority = "low",
     description = "",
     completed = false,
-    projectId = 1
+    projectId = 1,
   ) {
     if (!title) {
       throw new Error("Title is required");
@@ -28,8 +28,7 @@ const taskFactory = () => {
         return {
           taskId: this.taskId,
           title: this.title,
-
-        }
+        };
       },
 
       markAsCompleted() {

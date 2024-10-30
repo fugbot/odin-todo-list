@@ -1,15 +1,15 @@
 import { Task } from "./TaskComponent.js";
-import { Project } from "./ProjectComponent.js"
+import { Project } from "./ProjectComponent.js";
 import { projectStorage, projectState } from "./createProject.js";
-import {populateStorage} from "./checkLocalStorage.js";
-import pencilSvg from "./images/pencil-outline.svg"
+import { populateStorage } from "./checkLocalStorage.js";
+import pencilSvg from "./images/pencil-outline.svg";
 
 export { addTaskFromForm2, taskState, openEditModal, updateTask };
 
 const taskListUl = document.querySelector(".task-list");
 const input = document.getElementById("task-name");
 const date = document.querySelector("#due-date");
-const dialog = document.querySelector("dialog")
+const dialog = document.querySelector("dialog");
 
 function addTaskFromForm2() {
   const currentProjectId = Number(projectState.getProjectId());
@@ -29,7 +29,7 @@ function addTaskFromForm2() {
   const taskItem = document.createElement("li");
   const taskDiv = document.createElement("div");
   taskDiv.className = "task-item";
-  taskDiv.setAttribute("data-id", `${newTask.taskId}`)
+  taskDiv.setAttribute("data-id", `${newTask.taskId}`);
   taskItem.appendChild(taskDiv);
 
   //todo: checkbox - if checked, completed boolean change
@@ -80,8 +80,8 @@ function addTaskFromForm2() {
   //edit button
   const editBtn = document.createElement("button");
   const img = document.createElement("img");
-        img.src = pencilSvg;
-        editBtn.appendChild(img);
+  img.src = pencilSvg;
+  editBtn.appendChild(img);
   //editBtn.textContent = "Edit";
   //editBtn.innerHTML = pencilSvg;
   editBtn.className = "edit";
@@ -95,7 +95,6 @@ function addTaskFromForm2() {
   emptyInput();
 
   populateStorage();
-  
 }
 
 function emptyInput() {
@@ -105,49 +104,48 @@ function emptyInput() {
 
 const taskState = {
   currentTaskId: null,
-  
+
   setTaskId(id) {
-      this.currentTaskId = id;
+    this.currentTaskId = id;
   },
-  
+
   getTaskId() {
-      return this.currentTaskId;
-  }
+    return this.currentTaskId;
+  },
 };
 
-function openEditModal(){
-  const dialog = document.querySelector("dialog")
+function openEditModal() {
+  const dialog = document.querySelector("dialog");
   const taskId = Number(taskState.getTaskId());
 
   const projectId = Number(projectState.getProjectId());
 
   const currentProject = projectStorage.findProject(projectId);
-  const currentTask = currentProject.findTask(taskId)
+  const currentTask = currentProject.findTask(taskId);
 
   dialog.showModal();
-  
+
   //populate modal with task data
   const titleInput = document.querySelector("#edit-task-name");
   const descriptionInput = document.querySelector("#edit-description");
   const dateInput = document.querySelector("#edit-date");
   const prioSelect = document.querySelector("#edit-priority");
 
-  titleInput.value=currentTask.title;
+  titleInput.value = currentTask.title;
   descriptionInput.value = currentTask.description;
   dateInput.value = currentTask.dueDate;
   prioSelect.value = currentTask.priority;
+}
 
-};
-
-function updateTask(){
+function updateTask() {
   //getCurrentTaskProject()
   const taskId = Number(taskState.getTaskId());
 
   const projectId = Number(projectState.getProjectId());
 
   const currentProject = projectStorage.findProject(projectId);
-  const currentTask = currentProject.findTask(taskId)
-  
+  const currentTask = currentProject.findTask(taskId);
+
   const titleInput = document.querySelector("#edit-task-name");
   const descriptionInput = document.querySelector("#edit-description");
   const dateInput = document.querySelector("#edit-date");
@@ -160,14 +158,15 @@ function updateTask(){
   dialog.close();
 
   //alter task display
-  const taskItem = document.querySelector(`.task-item[data-id="${currentTask.taskId}"]`);
+  const taskItem = document.querySelector(
+    `.task-item[data-id="${currentTask.taskId}"]`,
+  );
   taskItem.querySelector(".title").textContent = currentTask.title;
   taskItem.querySelector(".description").textContent = currentTask.description;
   taskItem.querySelector(".date").textContent = currentTask.dueDate;
   taskItem.querySelector(".priority").value = currentTask.priority;
 
   populateStorage();
-
 }
 
 // function getCurrentTaskProject(){

@@ -18,7 +18,7 @@
 //     toggleComplete(){
 //         this.completed = !this.completed;
 //     }
-    
+
 //     updatePriority(newPriority){
 //         this.priority = newPriority;
 //     }
@@ -27,10 +27,10 @@
 //  function addTaskToList(task) {
 //     const taskItem = document.createElement("li");
 //     const fragment = document.createDocumentFragment();
-    
+
 //     //const checkbox = addCheckbox();
 //     //fragment.appendChild(checkbox);
-    
+
 //     //const taskText = addTaskName(title);
 //     // const titleSpan = document.createElement("span");
 //     // titleSpan.textContent = task.title;
@@ -47,22 +47,20 @@
 //     // descriptionSpan.textContent = task.description;
 //     // fragment.appendChild(descriptionSpan);
 
-
 //     // const prioSpan = document.createElement("span");
 //     // prioSpan.textContent = task.priority;
 //     // fragment.appendChild(prioSpan);
-    
+
 //     // const toggleBtn = document.createElement("button");
 //     // toggleBtn.textContent = "Toggle Complete";
 //     // toggleBtn.className = "toggle-complete"
 //     // fragment.appendChild(toggleBtn);
-    
-    
+
 //     taskItem.appendChild(fragment);
 //     //return taskItem;
 
-//     defaultList.appendChild(taskItem); 
-//     emptyInput(); 
+//     defaultList.appendChild(taskItem);
+//     emptyInput();
 // }
 
 // export default function addTaskFromInput() {

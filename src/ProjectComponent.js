@@ -13,12 +13,12 @@ const projectFactory = () => {
       title,
       tasks,
 
-      getProjectTasks(){
+      getProjectTasks() {
         return tasks;
       },
 
       findTask(id) {
-        return tasks.find(task => task.taskId === id);
+        return tasks.find((task) => task.taskId === id);
       },
 
       addTask(task) {
