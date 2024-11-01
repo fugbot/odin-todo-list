@@ -22,7 +22,6 @@ import {
   populateStorage,
   recreateProjects,
 } from "./checkLocalStorage.js";
-//import addTaskToList from './taskHandler.js'
 import { sub } from "date-fns";
 
 const tasklist = document.querySelector(".tasklists");
