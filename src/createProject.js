@@ -98,6 +98,9 @@ function displayAllProjectTasks() {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task-item";
     taskDiv.setAttribute("data-id", `${task.taskId}`);
+    if(task.completed){
+      taskDiv.dataset.completed = true;
+    }
     taskItem.appendChild(taskDiv);
 
     //checkbox
@@ -106,6 +109,10 @@ function displayAllProjectTasks() {
     checkbox.name = `task`;
     checkbox.value = `task`;
     checkbox.setAttribute("data-id", `${task.taskId}`);
+    if(task.completed){
+      checkbox.checked = true;
+      taskDiv.dataset.completed = true;
+    }
     fragment.appendChild(checkbox);
 
     //title

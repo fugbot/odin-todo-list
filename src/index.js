@@ -5,6 +5,7 @@ import {
   taskState,
   openEditModal,
   updateTask,
+  updateTaskPriority,
   updateTaskStatus,
 } from "./createTask.js";
 import {
@@ -129,6 +130,21 @@ tasklist.addEventListener("change", function (e) {
   }
 });
 
+tasklist.addEventListener("change", (e) => {
+  const prioSelect = document.querySelector("select.priority");
+  let currentTaskId = null;
+  if(prioSelect) {
+    e.preventDefault;
+    currentTaskId = prioSelect.getAttribute("data-id");
+    taskState.setTaskId(currentTaskId);
+
+    //todo: fix value, takes original value instead of after selection change
+    const value = prioSelect.value;
+    console.log(value)
+    updateTaskPriority(value);
+  }
+})
+
 //edit and save tasks
 const editDialog = document.querySelector("dialog");
 
@@ -140,6 +156,7 @@ tasklist.addEventListener("click", (e) => {
     //editDialog.showModal();
     currentTaskId = editBtn.getAttribute("data-id");
     taskState.setTaskId(currentTaskId);
+    openEditModal();
   }
 });
 

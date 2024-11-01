@@ -9,6 +9,7 @@ export {
   taskState,
   openEditModal,
   updateTask,
+  updateTaskPriority,
   updateTaskStatus,
 };
 
@@ -199,4 +200,24 @@ function updateTaskStatus() {
     `[class="task-item"][data-id="${currentTask.taskId}"]`,
   );
   taskItemDiv.dataset.completed = currentTask.completed;
+  populateStorage();
+}
+
+function updateTaskPriority(value) {
+  const taskId = Number(taskState.getTaskId());
+
+  const projectId = Number(projectState.getProjectId());
+
+  const currentProject = projectStorage.findProject(projectId);
+  const currentTask = currentProject.findTask(taskId);
+  
+  if(value === "low"){
+    currentTask.priority = "low";
+  } else if(value === "med"){
+    console.log("medium")
+    currentTask.priority = "medium";
+  } else if(value === "high"){
+    currentTask.priority = "high";
+  }
+
 }
