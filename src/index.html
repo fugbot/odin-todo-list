@@ -21,7 +21,12 @@
             placeholder="Project Name"
           />
           <div class="project-list">
-            <div class="project">Inbox</div>
+            <div class="project">Inbox
+              <button class="remove-project">
+                <img alt="trash" src=<%=require("./images/trash-can-outline.svg")%> />
+                  
+                </button>
+            </div>
           </div>
         </div>
       </div>
@@ -51,10 +56,11 @@
                   <option value="high">High</option>
                 </select>
                 <button class="edit">
-                  <img
+                  <img alt="pencil" src=<%=require("./images/pencil-outline.svg")%> />
+                  <!-- <img
                     alt="pencil"
                     src="https://legendary-sniffle-pj57r56q6xxhrj4v-8080.app.github.dev/c11ca64583db9195885d.svg"
-                  />
+                  /> -->
                 </button>
               </div>
             </li>
