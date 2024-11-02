@@ -12,8 +12,10 @@ import {
   addNewProject,
   displayAllProjects,
   displayAllProjectTasks,
+  highlightCurrentProject,
   projectState,
   projectStorage,
+  removeProject,
 } from "./createProject.js";
 import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js";
@@ -88,11 +90,13 @@ document.addEventListener("DOMContentLoaded", () => {
       //show inbox as default
       projectState.setProjectId(1);
       displayAllProjectTasks();
+      highlightCurrentProject();
     }
   } else {
     // Too bad, no localStorage for us
     initDefaultPage();
     console.log("no local storage");
+    highlightCurrentProject();
   }
 });
 
@@ -132,17 +136,17 @@ tasklist.addEventListener("change", function (e) {
 tasklist.addEventListener("change", (e) => {
   const prioSelect = document.querySelector("select.priority");
   let currentTaskId = null;
-  if(prioSelect) {
+  if (prioSelect) {
     e.preventDefault;
     currentTaskId = prioSelect.getAttribute("data-id");
     taskState.setTaskId(currentTaskId);
 
     //todo: fix value, takes original value instead of after selection change
     const value = prioSelect.value;
-    console.log(value)
+    console.log(value);
     updateTaskPriority(value);
   }
-})
+});
 
 //edit and save tasks
 const editDialog = document.querySelector("dialog");
@@ -196,8 +200,23 @@ projectContainer.addEventListener("click", (e) => {
   let currentProjectId = null;
   if (projectBtn) {
     e.preventDefault();
+    //todo: fix why does it require two clicks?
+    highlightCurrentProject();
     currentProjectId = projectBtn.getAttribute("data-id");
     projectState.setProjectId(currentProjectId);
     displayAllProjectTasks();
+  }
+});
+
+projectContainer.addEventListener("click", (e) => {
+  const removeProjectBtn = e.target.closest("button.remove-project");
+  let currentProjectId = null;
+  if (removeProjectBtn) {
+    e.preventDefault();
+    currentProjectId = removeProjectBtn.getAttribute("data-id");
+    projectState.setProjectId(currentProjectId);
+    if (currentProjectId > 1) {
+      removeProject();
+    }
   }
 });
