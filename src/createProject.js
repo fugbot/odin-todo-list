@@ -2,13 +2,16 @@ import { Task } from "./TaskComponent.js";
 import { Project } from "./ProjectComponent.js";
 import { populateStorage } from "./checkLocalStorage.js";
 import pencilSvg from "./images/pencil-outline.svg";
+import trashSvg from "./images/trash-can-outline.svg";
 
 export {
   addNewProject,
   displayAllProjects,
   displayAllProjectTasks,
+  highlightCurrentProject,
   projectState,
   projectStorage,
+  removeProject,
 };
 
 const addProjectBtn = document.querySelector("#add-project");
@@ -35,6 +38,15 @@ function addNewProject() {
   projectItem.setAttribute("data-id", `${newProject.projectId}`);
   projectItem.textContent = newProject.title;
   projectList.appendChild(projectItem);
+
+  //add trashcan remove
+  const removeBtn = document.createElement("button");
+  const img = document.createElement("img");
+  img.src = trashSvg;
+  removeBtn.appendChild(img);
+  removeBtn.className = "remove-project";
+  removeBtn.setAttribute("data-id", `${newProject.projectId}`);
+  projectItem.appendChild(removeBtn);
 
   //empty input, hide input again
   projectInput.value = "";
@@ -79,6 +91,16 @@ function displayAllProjects() {
     projectDiv.setAttribute("data-id", `${project.projectId}`);
     projectDiv.textContent = `${project.title}`;
     projectListContainer.appendChild(projectDiv);
+
+    if (project.projectId > 1) {
+      const removeBtn = document.createElement("button");
+      const img = document.createElement("img");
+      img.src = trashSvg;
+      removeBtn.appendChild(img);
+      removeBtn.className = "remove-project";
+      removeBtn.setAttribute("data-id", `${project.projectId}`);
+      projectDiv.appendChild(removeBtn);
+    }
   });
 }
 
@@ -98,7 +120,7 @@ function displayAllProjectTasks() {
     const taskDiv = document.createElement("div");
     taskDiv.className = "task-item";
     taskDiv.setAttribute("data-id", `${task.taskId}`);
-    if(task.completed){
+    if (task.completed) {
       taskDiv.dataset.completed = true;
     }
     taskItem.appendChild(taskDiv);
@@ -109,7 +131,7 @@ function displayAllProjectTasks() {
     checkbox.name = `task`;
     checkbox.value = `task`;
     checkbox.setAttribute("data-id", `${task.taskId}`);
-    if(task.completed){
+    if (task.completed) {
       checkbox.checked = true;
       taskDiv.dataset.completed = true;
     }
@@ -158,8 +180,6 @@ function displayAllProjectTasks() {
     const img = document.createElement("img");
     img.src = pencilSvg;
     editBtn.appendChild(img);
-    //editBtn.textContent = "Edit";
-    //editBtn.innerHTML = pencilSvg;
     editBtn.className = "edit";
     editBtn.setAttribute("data-id", `${task.taskId}`);
     fragment.appendChild(editBtn);
@@ -168,4 +188,37 @@ function displayAllProjectTasks() {
     taskItem.appendChild(taskDiv);
     ul.appendChild(taskItem);
   });
+}
+
+function removeProject() {
+  console.log("clicked remove");
+  const index = projectStorage.projects.findIndex(
+    (x) => x.projectId === Number(projectState.getProjectId()),
+  );
+  if (window.confirm("Do you really want to delete this project?")) {
+    console.log("project deleted");
+    projectStorage.projects.splice(index, 1);
+  }
+  populateStorage();
+  displayAllProjects();
+
+  //todo: after deleting project
+  //go back to inbox
+  //display inbox tasks
+}
+
+function highlightCurrentProject() {
+  const currentProjectId = Number(projectState.getProjectId());
+  console.log(currentProjectId);
+
+  const projectList = document.querySelector("div.project-list");
+  const projectItemDivs = projectList.children;
+  console.log(projectItemDivs);
+  Array.from(projectItemDivs).forEach((projectDiv) => {
+    projectDiv.removeAttribute("data-selected");
+  });
+  const projectDiv = projectList.querySelector(
+    `div[data-id="${currentProjectId}"]`,
+  );
+  projectDiv.dataset.selected = "true";
 }
