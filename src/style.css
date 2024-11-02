@@ -51,6 +51,13 @@ input#project-name-input {
   margin-bottom: 8px;
 }
 
+.project-list div[data-selected="true"] {
+  border: solid #ffffff 6px;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 8px;
+}
+
 button.remove-project {
   float: inline-end;
   border: none;
