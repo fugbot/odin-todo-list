@@ -17,8 +17,6 @@ export {
 const addProjectBtn = document.querySelector("#add-project");
 
 function addNewProject() {
-  //todo: logic
-
   //place input directly into html, set to hidden
   //if it's shown, do nothing
   //if it's hidden, open
@@ -209,11 +207,9 @@ function removeProject() {
 
 function highlightCurrentProject() {
   const currentProjectId = Number(projectState.getProjectId());
-  console.log(currentProjectId);
 
   const projectList = document.querySelector("div.project-list");
   const projectItemDivs = projectList.children;
-  console.log(projectItemDivs);
   Array.from(projectItemDivs).forEach((projectDiv) => {
     projectDiv.removeAttribute("data-selected");
   });

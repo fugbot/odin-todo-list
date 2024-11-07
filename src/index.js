@@ -141,9 +141,7 @@ tasklist.addEventListener("change", (e) => {
     currentTaskId = prioSelect.getAttribute("data-id");
     taskState.setTaskId(currentTaskId);
 
-    //todo: fix value, takes original value instead of after selection change
     const value = prioSelect.value;
-    console.log(value);
     updateTaskPriority(value);
   }
 });
@@ -200,10 +198,9 @@ projectContainer.addEventListener("click", (e) => {
   let currentProjectId = null;
   if (projectBtn) {
     e.preventDefault();
-    //todo: fix why does it require two clicks?
-    highlightCurrentProject();
     currentProjectId = projectBtn.getAttribute("data-id");
     projectState.setProjectId(currentProjectId);
+    highlightCurrentProject();
     displayAllProjectTasks();
   }
 });

@@ -23,7 +23,6 @@ const projectFactory = () => {
 
       addTask(task) {
         tasks.push(task);
-        //todo: check if task already exists
       },
 
       removeTask(taskId) {

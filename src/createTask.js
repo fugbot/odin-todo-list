@@ -39,8 +39,7 @@ function addTaskFromForm2() {
   taskDiv.setAttribute("data-id", `${newTask.taskId}`);
   taskItem.appendChild(taskDiv);
 
-  //todo: checkbox - if checked, completed boolean change
-  //add value, id
+  //checkbox
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
   checkbox.name = `task`;
@@ -97,7 +96,6 @@ function addTaskFromForm2() {
 
   taskDiv.appendChild(fragment);
 
-  //todo: change project based on which project is currently selected
   taskListUl.appendChild(taskItem);
   emptyInput();
 
@@ -210,14 +208,13 @@ function updateTaskPriority(value) {
 
   const currentProject = projectStorage.findProject(projectId);
   const currentTask = currentProject.findTask(taskId);
-  
-  if(value === "low"){
+
+  if (value === "low") {
     currentTask.priority = "low";
-  } else if(value === "med"){
-    console.log("medium")
+  } else if (value === "med") {
+    console.log("medium");
     currentTask.priority = "medium";
-  } else if(value === "high"){
+  } else if (value === "high") {
     currentTask.priority = "high";
   }
-
 }
