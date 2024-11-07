@@ -29,6 +29,7 @@ import { sub } from "date-fns";
 const tasklist = document.querySelector(".tasklists");
 
 const taskInput = document.querySelector(".taskInput");
+const taskNameInput = document.getElementById("task-name");
 const date = document.querySelector("#due-date");
 const submitBtn = document.querySelector("#submit");
 
@@ -101,15 +102,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-  //addTaskFromForm();
-  addTaskFromForm2();
+  if (taskNameInput.value.trim().length > 0) {
+    addTaskFromForm2();
+  }
 });
 
 taskInput.addEventListener("keydown", function (e) {
   if (e.code === "Enter") {
-    //checks whether the pressed key is "Enter"
-    //addTaskFromForm();
-    addTaskFromForm2();
+    if (taskNameInput.value.trim().length > 0) {
+      addTaskFromForm2();
+    }
   }
 });
 
