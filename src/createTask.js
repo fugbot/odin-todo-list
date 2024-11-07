@@ -174,16 +174,6 @@ function updateTask() {
   populateStorage();
 }
 
-// function getCurrentTaskProject(){
-//   const taskId = Number(taskState.getTaskId());
-
-//   const projectId = projectState.getProjectId();
-//   //console.log("projectId " + projectId);
-
-//   const currentProject = projectStorage.findProject(projectId);
-//   const currentTask = currentProject.findTask(taskId)
-// }
-
 function updateTaskStatus() {
   const taskId = Number(taskState.getTaskId());
 
